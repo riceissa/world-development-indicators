@@ -21,7 +21,7 @@ with open("WDIData.csv", newline='') as f:
         if s:
             units = s.group(1)
             # strip off the units part of the metric, since units were found
-            metric = metric[:-(len(" (" + units +")"))]
+            metric = metric[:-(len("(" + units +")"))].strip()
         for year in range(1960, 2017):
             y = str(year)
             if row[y]:
