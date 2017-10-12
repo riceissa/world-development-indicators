@@ -15,3 +15,8 @@ sha1 checksum:
 ## License
 
 CC0
+
+## See also
+
+- [penn-world-table-data](https://github.com/riceissa/penn-world-table-data)
+- [maddison-project-data](https://github.com/riceissa/maddison-project-data)
