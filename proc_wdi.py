@@ -7,6 +7,16 @@ import re
 from util import *
 
 
+def units_heuristic(units):
+    if units.startswith('%'):
+        return "Unitless"
+    if units.endswith('%'):
+        return "Unitless"
+    units = units.replace("international $", "international dollar")
+    units = units.replace("US$", "US dollar")
+    return units
+
+
 insert_line = "insert into data(region, year, database_url, data_retrieval_method, metric, units, value, notes) values"
 count = 0
 first = True
@@ -22,6 +32,7 @@ with open("WDIData.csv", newline='') as f:
             units = s.group(1)
             # strip off the units part of the metric, since units were found
             metric = metric[:-(len("(" + units +")"))].strip()
+            units = units_heuristic(units)
         for year in range(1960, 2017):
             y = str(year)
             if row[y]:
