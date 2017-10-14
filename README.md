@@ -12,6 +12,9 @@ sha1 checksum:
 853b94d3c185105594ae4d6f21ba7b9755a58249  WDIData.csv
 ```
 
+For the database schema, see the
+[one for the Maddison repo](https://github.com/riceissa/maddison-project-data/blob/master/schema.sql).
+
 ## License
 
 CC0
