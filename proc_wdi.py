@@ -17,7 +17,7 @@ def units_heuristic(units):
     return units
 
 
-insert_line = "insert into data(region, year, database_url, data_retrieval_method, metric, units, value, notes) values"
+insert_line = "insert into data(region, odate, database_url, data_retrieval_method, metric, units, value, notes) values"
 count = 0
 first = True
 
@@ -44,7 +44,7 @@ with open("WDIData.csv", newline='') as f:
                     # each time it is downloaded), we use the botched header
                     # name it gives
                     mysql_quote(row['\ufeff"Country Name"']),  # region
-                    mysql_int(y),  # year
+                    mysql_string_date(y),  # odate
                     mysql_quote("https://data.worldbank.org/data-catalog/world-development-indicators"),  # database_url
                     mysql_quote(""),  # data_retrieval_method
                     mysql_quote(metric),  # metric
