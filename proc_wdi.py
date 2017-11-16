@@ -45,7 +45,7 @@ with open("WDIData.csv", newline='') as f:
                     # name it gives
                     mysql_quote(row['\ufeff"Country Name"']),  # region
                     mysql_string_date(y),  # odate
-                    mysql_quote("https://data.worldbank.org/data-catalog/world-development-indicators"),  # database_url
+                    mysql_quote("https://web.archive.org/web/20171012171000/http://databank.worldbank.org/data/download/WDI_csv.zip"),  # database_url
                     mysql_quote(""),  # data_retrieval_method
                     mysql_quote(metric),  # metric
                     mysql_quote(units),  # units
