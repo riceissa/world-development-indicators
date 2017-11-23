@@ -4,7 +4,7 @@ import csv
 import sys
 import re
 
-from util import *
+from devec_sql_common import *
 
 
 def units_heuristic(units):
