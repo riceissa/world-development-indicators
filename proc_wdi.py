@@ -43,7 +43,7 @@ with open("WDIData.csv", newline='') as f:
                     # modifying the CSV (it is huge and would need to be done
                     # each time it is downloaded), we use the botched header
                     # name it gives
-                    mysql_quote(row['\ufeff"Country Name"']),  # region
+                    mysql_quote(region_normalized(row['\ufeff"Country Name"'])),  # region
                     mysql_string_date(y),  # odate
                     mysql_quote("https://web.archive.org/web/20171012171000/http://databank.worldbank.org/data/download/WDI_csv.zip"),  # database_url
                     mysql_quote(""),  # data_retrieval_method
