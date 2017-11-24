@@ -22,6 +22,10 @@ def metric_heuristic(metric, units):
     name."""
     if units.startswith('% of'):
         return metric + " (percent of" + units[len('% of'):] + ")"
+    if units.startswith("% net"):
+        return metric + " (percent net)"
+    if units.startswith("% gross"):
+        return metric + " (percent gross)"
     return metric
 
 
@@ -40,7 +44,7 @@ if __name__ == "__main__":
             if s:
                 units = s.group(1)
                 # strip off the units part of the metric, since units were found
-                metric = metric[:-(len("(" + units +")"))].strip()
+                metric = metric_heuristic(metric[:-(len("(" + units +")"))].strip(), units)
                 units = units_heuristic(units)
             for year in range(1960, 2017):
                 y = str(year)
