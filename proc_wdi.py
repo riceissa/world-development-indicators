@@ -17,6 +17,14 @@ def units_heuristic(units):
     return units
 
 
+def metric_heuristic(metric, units):
+    """Use the separated metric and units names to come up with a new metric
+    name."""
+    if units.startswith('% of'):
+        return metric + " (percent of" + units[len('% of'):] + ")"
+    return metric
+
+
 insert_line = "insert into data(region, odate, database_url, data_retrieval_method, metric, units, value, notes) values"
 count = 0
 first = True
