@@ -29,42 +29,43 @@ insert_line = "insert into data(region, odate, database_url, data_retrieval_meth
 count = 0
 first = True
 
-with open("WDIData.csv", newline='') as f:
-    reader = csv.DictReader(f)
+if __name__ == "__main__":
+    with open("WDIData.csv", newline='') as f:
+        reader = csv.DictReader(f)
 
-    for row in reader:
-        s = re.search(r"\(([^()]+)\)$", row['Indicator Name'])
-        units = ""
-        metric = row['Indicator Name']
-        if s:
-            units = s.group(1)
-            # strip off the units part of the metric, since units were found
-            metric = metric[:-(len("(" + units +")"))].strip()
-            units = units_heuristic(units)
-        for year in range(1960, 2017):
-            y = str(year)
-            if row[y]:
-                if first:
-                    print(insert_line)
-                print("    " + ("" if first else ",") + "(" + ",".join([
-                    # The World Bank CSV starts with U+FEFF; rather than
-                    # modifying the CSV (it is huge and would need to be done
-                    # each time it is downloaded), we use the botched header
-                    # name it gives
-                    mysql_quote(region_normalized(row['\ufeff"Country Name"'])),  # region
-                    mysql_string_date(y),  # odate
-                    mysql_quote("https://web.archive.org/web/20171012171000/http://databank.worldbank.org/data/download/WDI_csv.zip"),  # database_url
-                    mysql_quote(""),  # data_retrieval_method
-                    mysql_quote(metric),  # metric
-                    mysql_quote(units),  # units
-                    mysql_float(row[y]),  # value
-                    mysql_quote(""),  # notes
-                ]) + ")")
-                first = False
-                count += 1
-                if count > 5000:
-                    count = 0
-                    first = True
-                    print(";")
-    if not first:
-        print(";")
+        for row in reader:
+            s = re.search(r"\(([^()]+)\)$", row['Indicator Name'])
+            units = ""
+            metric = row['Indicator Name']
+            if s:
+                units = s.group(1)
+                # strip off the units part of the metric, since units were found
+                metric = metric[:-(len("(" + units +")"))].strip()
+                units = units_heuristic(units)
+            for year in range(1960, 2017):
+                y = str(year)
+                if row[y]:
+                    if first:
+                        print(insert_line)
+                    print("    " + ("" if first else ",") + "(" + ",".join([
+                        # The World Bank CSV starts with U+FEFF; rather than
+                        # modifying the CSV (it is huge and would need to be done
+                        # each time it is downloaded), we use the botched header
+                        # name it gives
+                        mysql_quote(region_normalized(row['\ufeff"Country Name"'])),  # region
+                        mysql_string_date(y),  # odate
+                        mysql_quote("https://web.archive.org/web/20171012171000/http://databank.worldbank.org/data/download/WDI_csv.zip"),  # database_url
+                        mysql_quote(""),  # data_retrieval_method
+                        mysql_quote(metric),  # metric
+                        mysql_quote(units),  # units
+                        mysql_float(row[y]),  # value
+                        mysql_quote(""),  # notes
+                    ]) + ")")
+                    first = False
+                    count += 1
+                    if count > 5000:
+                        count = 0
+                        first = True
+                        print(";")
+        if not first:
+            print(";")
