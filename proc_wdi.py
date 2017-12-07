@@ -6,6 +6,8 @@ import re
 
 from devec_sql_common import *
 
+print_insert_header()
+
 
 def units_heuristic(units):
     if units.startswith('%'):
@@ -73,3 +75,6 @@ if __name__ == "__main__":
                         print(";")
         if not first:
             print(";")
+
+
+print_insert_footer()
