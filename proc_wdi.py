@@ -51,7 +51,7 @@ if __name__ == "__main__":
                 if row[y]:
                     if first:
                         print(insert_line)
-                    print("    " + ("" if first else ",") + "(" + ",".join([
+                    print("    " + ("" if first else ",") + "(" + uniq_join([
                         # The World Bank CSV starts with U+FEFF; rather than
                         # modifying the CSV (it is huge and would need to be done
                         # each time it is downloaded), we use the botched header
