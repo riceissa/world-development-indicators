@@ -9,7 +9,7 @@ in case the World Bank version goes away
 sha1 checksum:
 
 ```
-853b94d3c185105594ae4d6f21ba7b9755a58249  WDIData.csv
+6b70c2a727ed96a087629ccb0ab8e2005d26d9c4  WDIData.csv
 ```
 
 For the database schema, see the
