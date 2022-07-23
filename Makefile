@@ -1,9 +1,12 @@
+MYSQL_ARGS=
+DATABASE=devecondata
+
 wdi.sql:
 	./proc_wdi.py > $@
 
 .PHONY: read
 read:
-	mysql devecondata < wdi.sql
+	mysql $(MYSQL_ARGS) $(DATABASE) < wdi.sql
 
 .PHONY: clean
 clean:
