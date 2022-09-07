@@ -1,10 +1,10 @@
 # world development indicators
 
-downloaded from https://data.worldbank.org/data-catalog/world-development-indicators
+downloaded from https://data.world/worldbank/world-development-indicators
 
-the CSV zip is archived at
+You need to log in and download the CSV. The CSV previously did not
+require a login for download; one such historical CSV is archived at
 https://web.archive.org/web/20171012171000/http://databank.worldbank.org/data/download/WDI_csv.zip
-in case the World Bank version goes away
 
 sha1 checksum:
 
